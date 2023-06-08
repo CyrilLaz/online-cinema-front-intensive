@@ -1,1 +1,1 @@
-# online-cinema-intensive
+# online-cinema-frontend
