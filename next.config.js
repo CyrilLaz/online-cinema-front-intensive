@@ -2,7 +2,7 @@
 const nextConfig = {
 	poweredByHeader: false, //убирает след react
 	optimizeFonts: false,
-	reactStrictMode: true,
+	// reactStrictMode: true,
 	env: {
 		APP_URL: process.env.REACT_APP_URL,
 		APP_ENV: process.env.REACT_APP_ENV,

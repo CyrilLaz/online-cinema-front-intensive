@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Outfit', sans-serif;
+	@apply bg-gray-900;
+}
+
+input[type='file'],
+input[type='file']::-webkit-file-upload-button {
+	@apply cursor-pointer focus:outline-border-none;
+}
+
+input:focus {
+    box-shadow: none !important;
+}
