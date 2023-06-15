@@ -31,7 +31,7 @@ module.exports = {
 			borderRadius: { image: '0.5rem', layout: '0.8rem' },
 			transitionTimingFunction: { default: 'easy-in-out' },
 			transition: {
-				default: '200ms',
+				DEFAULT: '200ms',
 			},
 			zIndex: { 1: '1', 2: '2', 3: '3' },
 			keyFrames: {
