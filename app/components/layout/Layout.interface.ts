@@ -1,3 +1,5 @@
-import { ReactFragment } from "react";
+import { ReactNode } from 'react'
 
-export interface ILayout {children:ReactFragment}
+export interface ILayout {
+	children: ReactNode
+}
