@@ -1,5 +1,3 @@
-import exp from 'constants'
-
 import { IMenu } from './menu.interface'
 
 export const firstMenu: IMenu = {
