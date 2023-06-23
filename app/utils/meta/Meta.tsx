@@ -9,6 +9,7 @@ import { siteName, titleMerge } from '@/config/seo.config'
 import { onlyText } from '../strings/clearText'
 
 import { ISeo } from './meta.interface'
+import Layout from '@/components/layout/Layout'
 
 const Meta: FC<ISeo> = ({ title, description, image, children }) => {
 	const { asPath } = useRouter()

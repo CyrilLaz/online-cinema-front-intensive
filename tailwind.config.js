@@ -30,12 +30,13 @@ module.exports = {
 			fontSize: { '2lg': '1.38rem' },
 			borderRadius: { image: '0.5rem', layout: '0.8rem' },
 			transitionTimingFunction: { default: 'easy-in-out' },
-			transition: {
+			transitionDuration: {
 				DEFAULT: '200ms',
 			},
 			zIndex: { 1: '1', 2: '2', 3: '3' },
-			keyFrames: {
-				fade: { from: { opacity: 0 }, to: { opacity: 1 } },
+
+			keyframes: {
+				fade: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
 				scaleIn: {
 					'0%': { opacity: 0, transform: 'scale(0.9)' },
 					'50%': { opacity: 0.3 },
@@ -43,7 +44,7 @@ module.exports = {
 				},
 			},
 			animation: {
-				fade: 'fade .5s easy-in-out',
+				fade: 'fade .5s easy-in-out both',
 				scaleIn: 'scaleIn .35s easy-in-out',
 			},
 		},
@@ -77,7 +78,7 @@ module.exports = {
 			})
 			addUtilities({
 				'.text-shadow': { textShadow: '1px 1px rgba(0,0,0,.4)' },
-
+				'.zero-space': { margin: 0, padding: 0 },
 				'.outline-border-none': {
 					outline: 'none',
 					border: 'none',

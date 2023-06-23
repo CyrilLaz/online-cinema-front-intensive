@@ -3,8 +3,6 @@ import MainProvider from 'providers/MainProvider'
 
 import Home from '@/components/screens/home/Home'
 
-import '../styles/globals.scss'
-
 const HomePage: NextPage = () => {
 	return (
 		<MainProvider>
