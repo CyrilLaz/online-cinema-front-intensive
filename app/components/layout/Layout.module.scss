@@ -2,6 +2,7 @@ $bar-width: 20%;
 
 .layout {
 	@apply relative;
+	
 	> div:last-child,
 	> div:first-child {
 		@apply fixed top-0 bottom-0;

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import ProgressBar from 'nextjs-progressbar'
 import { FC, ReactNode } from 'react'
 
-import { accentColor, bgColor } from '@/config/constants'
+import { accentColor } from '@/config/constants'
 
 import Favicons from './Favicons'
 

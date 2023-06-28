@@ -1,5 +1,4 @@
-// /** @type {import('tailwindcss').Config} */
-// const { default: plugin } = require('tailwindcss');
+/** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
 const plugin = require('tailwindcss/plugin')
 const primary = '#e30b13'
@@ -29,7 +28,7 @@ module.exports = {
 			spacing: { 0.5: '0.12rem', layout: '2.75rem' },
 			fontSize: { '2lg': '1.38rem' },
 			borderRadius: { image: '0.5rem', layout: '0.8rem' },
-			transitionTimingFunction: { default: 'easy-in-out' },
+			transitionTimingFunction: { DEFAULT: 'ease-in-out' },
 			transitionDuration: {
 				DEFAULT: '200ms',
 			},
@@ -44,25 +43,26 @@ module.exports = {
 				},
 			},
 			animation: {
-				fade: 'fade .5s easy-in-out both',
-				scaleIn: 'scaleIn .35s easy-in-out',
+				fade: 'fade .5s ease-in-out',
+				scaleIn: 'scaleIn .35s ease-in-out',
 			},
 		},
 	},
 	plugins: [
+		require('@tailwindcss/forms')({strategy: 'class'}),
 		plugin(({ addComponents, addUtilities, theme }) => {
 			addComponents({
 				'.btn-primary': {
 					backgroundColor: primary,
 					color: theme(colors.white),
 					borderRadius: '0.65rem',
-					transition: 'background-color .3s easy-in-out',
+					transition: 'background-color .3s ease-in-out',
 					'&:hover': { backgroundColor: '#ff0009' },
 				},
 				'.text-link': {
 					textUnderlineOffset: 4,
 					color: 'rgba(255,255,255,.9)',
-					transition: 'text-decoration-color .3s easy-in-out',
+					transition: 'text-decoration-color .3s ease-in-out',
 					textDecorationLine: 'underline',
 					textDecorationColor: 'rgba(255,255,255,.2)',
 					'&:hover': {
