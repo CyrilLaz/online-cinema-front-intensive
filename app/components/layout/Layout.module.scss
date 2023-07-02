@@ -8,6 +8,7 @@ $bar-width: 20%;
 		@apply fixed top-0 bottom-0;
 		width: $bar-width;
 		max-width: 350px;
+		overflow-y: auto;
 	}
 	> div:first-child {
 		@apply left-0 border-r-gray-800 border-r;

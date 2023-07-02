@@ -2,8 +2,8 @@ import { FC } from 'react'
 
 import styles from './Menu.module.scss'
 import MenuItem from './MenuItem'
-import { IMenu } from './menu.interface'
 import AuthItems from './auth/AuthItems'
+import { IMenu } from './menu.interface'
 
 const Menu: FC<{ menu: IMenu }> = ({ menu: { items, title } }) => {
 	return (
@@ -13,7 +13,7 @@ const Menu: FC<{ menu: IMenu }> = ({ menu: { items, title } }) => {
 				{items.map((item) => (
 					<MenuItem item={item} key={item.link} />
 				))}
-                {title==='General'?<AuthItems/>:null}
+				{title === 'General' ? <AuthItems /> : null}
 			</ul>
 		</div>
 	)

@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import MainProvider from 'providers/MainProvider'
 
 import '@/assets/styles/globals.scss'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (

@@ -33,7 +33,6 @@ module.exports = {
 				DEFAULT: '200ms',
 			},
 			zIndex: { 1: '1', 2: '2', 3: '3' },
-
 			keyframes: {
 				fade: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
 				scaleIn: {
@@ -89,7 +88,6 @@ module.exports = {
 					alignItems: 'center',
 					justifyContent: 'space-between',
 				},
-
 				'.image-like-bg': {
 					objectPosition: 'center',
 					objectFit: 'cover',
