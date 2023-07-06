@@ -5,6 +5,7 @@ import { getAuthUrl } from '@/config/api.config'
 import { IAuthResponse } from '@/store/user/user.interface'
 
 import { removeTokensStorage, saveToStorage } from './auth.helper'
+import Cookies from 'js-cookie'
 
 export const AuthService = {
 	register: async (email: string, password: string) => {
@@ -20,7 +21,7 @@ export const AuthService = {
 			getAuthUrl('/login'),
 			{ email, password }
 		)
-        // console.log(data);
+        console.log(data);
 		
 		if (data.accessToken) saveToStorage(data)
 		return data
@@ -31,7 +32,9 @@ export const AuthService = {
 	},
 
 	getRefreshToken: async () => {
-		const refreshToken = localStorage.getItem('refreshToken')
+		const refreshToken = Cookies.get('refreshToken')
+		console.log(refreshToken);
+		
 		const { data } = await axiosClassic.post<IAuthResponse>(
 			getAuthUrl('/login/access-token'),
 			{ refreshToken }

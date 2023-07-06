@@ -4,23 +4,31 @@ import { Provider } from 'react-redux'
 
 import Layout from '@/components/layout/Layout'
 
+import { TypeComponentAuthFields } from '@/shared/types/auth.types'
+import { withChildren } from '@/shared/types/general.types'
+
 import { store } from '@/store/store'
 
+import AuthProvider from './AuthProvider/AuthProvider'
 import HeadProvider from './HeadProvider/HeadProvider'
 import ReduxToast from './ReduxToast'
-import { withChildren } from '@/shared/types/general.types'
 
 const queryClient = new QueryClient({
 	defaultOptions: { queries: { refetchOnWindowFocus: false } },
 })
 
-const MainProvider: FC<withChildren> = ({ children }) => {
+const MainProvider: FC<withChildren<TypeComponentAuthFields>> = ({
+	Component,
+	children,
+}) => {
 	return (
 		<HeadProvider>
 			<Provider store={store}>
 				<QueryClientProvider client={queryClient}>
 					<ReduxToast />
-					<Layout>{children}</Layout>
+					<AuthProvider Component={Component}>
+						<Layout>{children}</Layout>
+					</AuthProvider>
 				</QueryClientProvider>
 			</Provider>
 		</HeadProvider>

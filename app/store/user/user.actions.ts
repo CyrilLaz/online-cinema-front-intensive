@@ -56,7 +56,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
 			if (errorCatch(error) === 'jwt expired') {
 				toastr.error('Logout', 'Please login again')
 				dispatch(logout())
-			}
+			}			
 			toastError(error)
 
 			return rejectWithValue(error)
