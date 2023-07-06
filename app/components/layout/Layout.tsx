@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
-import { ILayout } from './Layout.interface'
 import style from './Layout.module.scss'
 import Navigation from './Navigation/Navigation'
 import Sidebar from './Sidebar/Sidebar'
+import { withChildren } from '@/shared/types/general.types'
 
-const Layout: FC<ILayout> = ({ children }) => {
+const Layout: FC<withChildren> = ({ children }) => {
 	return (
 		<div className={style.layout}>
 			<Navigation />

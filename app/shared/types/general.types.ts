@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
 
-export interface ILayout {
+export type withChildren<P={}> = {
 	children: ReactNode
-}
+} & P

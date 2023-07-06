@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import ProgressBar from 'nextjs-progressbar'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 import { accentColor } from '@/config/constants'
 
 import Favicons from './Favicons'
+import { withChildren } from '@/shared/types/general.types'
 
-const HeadProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const HeadProvider: FC<withChildren> = ({ children }) => {
 	return (
 		<>
 			<ProgressBar

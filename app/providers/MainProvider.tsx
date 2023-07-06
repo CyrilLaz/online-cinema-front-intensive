@@ -8,12 +8,13 @@ import { store } from '@/store/store'
 
 import HeadProvider from './HeadProvider/HeadProvider'
 import ReduxToast from './ReduxToast'
+import { withChildren } from '@/shared/types/general.types'
 
 const queryClient = new QueryClient({
 	defaultOptions: { queries: { refetchOnWindowFocus: false } },
 })
 
-const MainProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
+const MainProvider: FC<withChildren> = ({ children }) => {
 	return (
 		<HeadProvider>
 			<Provider store={store}>
