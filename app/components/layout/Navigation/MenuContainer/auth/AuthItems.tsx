@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 
 import { useAuth } from '@/hooks/useAuth'
 
@@ -10,15 +10,10 @@ import LogoutButton from './LogoutButton'
 
 const AuthItems: FC = () => {
 	const { user } = useAuth()
-	const [hydrated, setHydrated] = useState(false)
-
-	useEffect(() => {
-		setHydrated(true)
-	}, [])
 
 	return (
 		<>
-			{hydrated && user ? (
+			{user ? (
 				<>
 					<MenuItem
 						item={{
@@ -38,7 +33,7 @@ const AuthItems: FC = () => {
 					}}
 				/>
 			)}
-			{hydrated && user?.isAdmin && (
+			{user?.isAdmin && (
 				<MenuItem
 					item={{
 						icon: 'MdLockPerson',
