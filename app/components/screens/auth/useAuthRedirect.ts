@@ -6,7 +6,6 @@ import { useAuth } from '@/hooks/useAuth'
 export const useAuthRedirect = () => {
 	const { user } = useAuth()
 	const { query, push } = useRouter()
-	console.log(query)
 
 	const redirect = query.redirect ? query.redirect.toString() : '/'
 

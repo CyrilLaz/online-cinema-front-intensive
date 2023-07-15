@@ -9,7 +9,6 @@ import { getMovieUrl } from '@/config/url.config'
 import styles from './SearchList.module.scss'
 
 const SearchList: FC<{ movies: IMovie[] }> = ({ movies }) => {
-	console.log(movies);
 	return (
 		<div className={styles.list}>
 			{movies?.length ? (

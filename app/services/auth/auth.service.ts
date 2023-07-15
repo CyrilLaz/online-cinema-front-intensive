@@ -21,7 +21,6 @@ export const AuthService = {
 			getAuthUrl('/login'),
 			{ email, password }
 		)
-        console.log(data);
 		
 		if (data.accessToken) saveToStorage(data)
 		return data
@@ -33,7 +32,6 @@ export const AuthService = {
 
 	getRefreshToken: async () => {
 		const refreshToken = Cookies.get('refreshToken')
-		console.log(refreshToken);
 		
 		const { data } = await axiosClassic.post<IAuthResponse>(
 			getAuthUrl('/login/access-token'),

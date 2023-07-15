@@ -8,8 +8,7 @@ import { INavItem } from './admin-navigation.interface'
 
 const NavItem: FC<{ item: INavItem }> = ({ item: { link, title } }) => {
 	const { asPath } = useRouter()
-	console.log('asPath', asPath)
-	console.log('link', link)
+
 	return (
 		<li>
 			<Link

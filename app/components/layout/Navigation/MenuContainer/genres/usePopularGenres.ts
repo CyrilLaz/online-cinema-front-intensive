@@ -1,4 +1,3 @@
-import { error } from 'console'
 import { useQuery } from 'react-query'
 
 import { GenreService } from '@/services/genre.service'

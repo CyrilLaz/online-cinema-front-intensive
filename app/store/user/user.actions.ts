@@ -32,7 +32,6 @@ export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 			toastr.success('Login', 'Completed successfully')
 			return userResponse
 		} catch (error) {
-			console.log(error)
 			toastError(error);
 			return thunkApi.rejectWithValue(error)
 		}
