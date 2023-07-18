@@ -9,7 +9,7 @@ import { IMenuItem } from '../menu.interface'
 export const usePopularGenres = () => {
 	const queryData = useQuery(
 		'popular genre menu',
-		() => GenreService.getPopularGenre(),
+		() => GenreService.getPopular(),
 		{
 			select: ({ data }) =>
 				data

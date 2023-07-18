@@ -11,7 +11,7 @@ import Meta from '@/utils/meta/Meta'
 import { useActors } from './useActors'
 
 const ActorsList: FC = () => {
-	const { handleSearch, searchTerm, isLoading, data, deleteUser } = useActors()
+	const { handleSearch, searchTerm, isLoading, data, deleteActor } = useActors()
 	return (
 		<Meta title="Actors">
 			<AdminNavigation />
@@ -20,7 +20,7 @@ const ActorsList: FC = () => {
 			<AdminTable
 				tableItems={data || []}
 				isLoading={isLoading}
-				removeHandler={deleteUser}
+				removeHandler={deleteActor}
 				headerItems={['Name', 'Count movies']}
 			/>
 		</Meta>

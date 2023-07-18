@@ -10,8 +10,7 @@ export const GenreService = {
 			params: searchTerm ? { searchTerm } : {},
 		})
 	},
-	
-	getPopularGenre() {
+	getPopular() {
 		return axiosClassic.get<IGenre[]>(getGenresUrl('/popular'))
 	},
 
