@@ -14,7 +14,7 @@ import { IGenreEdit } from './genre-edit.interface'
 
 export const useGenreEdit = (setValue: UseFormSetValue<IGenreEdit>) => {
 	const { push, query } = useRouter()
-	const genreId = String(query._id)
+	const genreId = String(query.id)
 
 	const { isLoading } = useQuery(
 		['genre', genreId],
@@ -28,7 +28,7 @@ export const useGenreEdit = (setValue: UseFormSetValue<IGenreEdit>) => {
 			onError: (error) => {
 				toastError(error, 'Get genre')
 			},
-			enabled: !!query._id,
+			enabled: !!query.id,
 		}
 	)
 
@@ -38,7 +38,7 @@ export const useGenreEdit = (setValue: UseFormSetValue<IGenreEdit>) => {
 		{
 			onSuccess() {
 				toastr.success('Success', 'Genre updated successfully')
-				push(getAdminUrl('/genres'))
+				push(getAdminUrl('genres'))
 			},
 			onError(error) {
 				toastError(error, 'Error updating')
