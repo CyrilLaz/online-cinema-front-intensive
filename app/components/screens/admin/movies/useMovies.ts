@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
@@ -14,7 +15,7 @@ import { getAdminUrl } from '@/config/url.config'
 export const useMovies = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const debouncedSearch = useDebounce(searchTerm, 500)
-
+	const { push } = useRouter()
 	const queryData = useQuery(
 		['movies list', debouncedSearch],
 		() => MovieService.getAll(debouncedSearch),
@@ -23,7 +24,11 @@ export const useMovies = () => {
 				data.map((movie) => ({
 					_id: movie._id,
 					editUrl: getAdminUrl(`movie/edit/${movie._id}`),
-					items: [movie.title, getGenreList(movie.genres),movie.rating.toFixed(1).toString()],
+					items: [
+						movie.title,
+						getGenreList(movie.genres),
+						movie.rating.toFixed(1).toString(),
+					],
 				})),
 			onError: (error) => {
 				toastError(error, 'Error while loading movies')
@@ -44,12 +49,21 @@ export const useMovies = () => {
 			},
 		}
 	)
-
+	const { mutateAsync: createAsync } = useMutation({
+		mutationFn: () => MovieService.create(),
+		onSuccess({ data: id }) {
+			toastr.success('Success', 'Movie create successfully')
+			push(getAdminUrl(`movie/edit/${id}`))
+		},
+		onError(error) {
+			toastError(error, 'Error updating')
+		},
+	})
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 	return useMemo(
-		() => ({ ...queryData, handleSearch, searchTerm, deleteMovie }),
-		[deleteMovie, queryData, searchTerm]
+		() => ({ ...queryData, handleSearch, createAsync,searchTerm, deleteMovie }),
+		[createAsync, deleteMovie, queryData, searchTerm]
 	)
 }

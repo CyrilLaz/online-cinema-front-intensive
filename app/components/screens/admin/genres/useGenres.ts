@@ -1,5 +1,6 @@
+import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
-import { useMutation, useQuery } from 'react-query'
+import {  useMutation, useQuery, useQueryClient } from 'react-query'
 import { toastr } from 'react-redux-toastr'
 
 import { ITableItem } from '@/components/ui/AdminTable/admin-table.interface'
@@ -13,11 +14,13 @@ import { toastError } from '@/utils/toast-error'
 import { getAdminUrl } from '@/config/url.config'
 
 export const useGenres = () => {
+	const { push } = useRouter()
 	const [searchTerm, setSearchTerm] = useState('')
 	const debouncedSearch = useDebounce(searchTerm, 500)
+	const queryClient = useQueryClient();
 
 	const queryData = useQuery(
-		['genres list', debouncedSearch],
+		['genres','genres list', debouncedSearch],
 		() => GenreService.getAll(debouncedSearch),
 		{
 			select: ({ data }) =>
@@ -32,8 +35,18 @@ export const useGenres = () => {
 		}
 	)
 
+	const { mutateAsync: createAsync } = useMutation({
+		mutationFn: () => GenreService.create(),
+		onSuccess({ data: id }) {
+			toastr.success('Success', 'Genre create successfully')
+			push(getAdminUrl(`genre/edit/${id}`))
+		},
+		onError(error) {
+			toastError(error, 'Error updating')
+		},
+	})
+
 	const { mutateAsync: deleteGenre } = useMutation(
-		'delete genre',
 		(id: string) => GenreService.delete(id),
 		{
 			onError: (error) => {
@@ -41,7 +54,7 @@ export const useGenres = () => {
 			},
 			onSuccess: () => {
 				toastr.success('Delete genre', 'Genre deleted successfully')
-				queryData.refetch()
+				queryClient.invalidateQueries(['genres'])
 			},
 		}
 	)
@@ -50,7 +63,13 @@ export const useGenres = () => {
 		setSearchTerm(e.target.value)
 	}
 	return useMemo(
-		() => ({ ...queryData, handleSearch, searchTerm, deleteGenre }),
-		[deleteGenre, queryData, searchTerm]
+		() => ({
+			...queryData,
+			handleSearch,
+			createAsync,
+			searchTerm,
+			deleteGenre,
+		}),
+		[createAsync, deleteGenre, queryData, searchTerm]
 	)
 }

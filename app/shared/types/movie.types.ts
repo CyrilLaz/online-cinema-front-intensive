@@ -32,6 +32,6 @@ export interface IActor {
 	_id:string
 	photo:string
 	name:string
-	countMovie:number
+	countMovies:number
 	slug:string
 }

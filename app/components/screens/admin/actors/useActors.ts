@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { ChangeEvent, useMemo, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { toastr } from 'react-redux-toastr'
@@ -15,6 +16,7 @@ import { getAdminUrl } from '@/config/url.config'
 export const useActors = () => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const debouncedSearch = useDebounce(searchTerm, 500)
+	const { push } = useRouter()
 
 	const queryData = useQuery(
 		['actors list', debouncedSearch],
@@ -24,7 +26,7 @@ export const useActors = () => {
 				data.map<ITableItem>((actor) => ({
 					_id: actor._id,
 					editUrl: getAdminUrl(`actor/edit/${actor._id}`),
-					items: [actor.name, actor.countMovie.toString()],
+					items: [actor.name, actor.countMovies.toString()],
 				})),
 			onError: (error) => {
 				toastError(error, 'Error while loading users')
@@ -46,11 +48,21 @@ export const useActors = () => {
 		}
 	)
 
+	const { mutateAsync: createAsync } = useMutation({
+		mutationFn: () => ActorService.create(),
+		onSuccess({ data: id }) {
+			toastr.success('Success', 'Actor create successfully')
+			push(getAdminUrl(`actor/edit/${id}`))
+		},
+		onError(error) {
+			toastError(error, 'Error updating')
+		},
+	})
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 	return useMemo(
-		() => ({ ...queryData, handleSearch, searchTerm, deleteActor }),
-		[deleteActor, queryData, searchTerm]
+		() => ({ ...queryData, handleSearch, searchTerm, deleteActor,createAsync }),
+		[createAsync, deleteActor, queryData, searchTerm]
 	)
 }

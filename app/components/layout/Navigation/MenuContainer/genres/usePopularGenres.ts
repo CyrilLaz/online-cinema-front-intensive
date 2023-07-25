@@ -8,11 +8,11 @@ import { IMenuItem } from '../menu.interface'
 
 export const usePopularGenres = () => {
 	const queryData = useQuery(
-		'popular genre menu',
+		['genres','popular genre menu'],
 		() => GenreService.getPopular(),
 		{
 			select: ({ data }) =>
-				data
+				data.filter(genre=>genre.icon)
 					.map(
 						(genre) =>
 							({

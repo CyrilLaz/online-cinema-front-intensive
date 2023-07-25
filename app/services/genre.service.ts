@@ -18,6 +18,9 @@ export const GenreService = {
 	getById(id: string) {
 		return axios.get<IGenreEdit>(getGenresUrl(`/${id}`))
 	},
+	create() {
+		return axios.post<string>(getGenresUrl(``))
+	},
 	delete(id: string) {
 		return axios.delete<string>(getGenresUrl(`/${id}`))
 	},
