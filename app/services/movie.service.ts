@@ -25,7 +25,10 @@ export const MovieService = {
 		return axios.get<IMovieEdit>(getMoviesUrl(`/${id}`))
 	},
 	update(id: string, data: IMovieEdit) {
-		return axios.put<string>(getMoviesUrl(`/${id}`), data)
+		return axios.put<string>(getMoviesUrl(`/${id}`), {
+			...data,
+			description: '',
+		})
 	},
 	create() {
 		return axios.post<string>(getMoviesUrl(``))
