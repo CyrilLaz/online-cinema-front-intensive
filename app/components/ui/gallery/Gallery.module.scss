@@ -1,0 +1,39 @@
+@import '../../../assets/styles/_variables.scss';
+
+.gallery {
+	@apply flex items-center overflow-x-auto flex-nowrap py-3;
+	-webkit-overflow-scrolling: touch;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.item {
+	@apply relative transition-transform flex items-end rounded-layout overflow-hidden shadow-lg;
+	flex: 0 0 auto;
+
+	&:hover {
+		transform: translateY(-5px);
+	}
+	&.horizontal {
+		@apply mr-4 last:mr-0 w-1/5 h-72;
+		max-width: 200px;
+	}
+	@include fade-bg-gradient(0deg);
+}
+
+.img {
+	@apply image-like-bg;
+}
+
+.content {
+	@apply relative text-center w-full z-2 m-3 block;
+
+	.title {
+		@apply font-semibold text-white text-shadow;
+	}
+
+	.subtitle {
+		@apply text-gray-500 text-shadow;
+	}
+}
