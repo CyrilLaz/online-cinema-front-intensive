@@ -11,15 +11,23 @@
 .item {
 	@apply relative transition-transform flex items-end rounded-layout overflow-hidden shadow-lg;
 	flex: 0 0 auto;
+	
+	@include fade-bg-gradient(0deg);
 
 	&:hover {
 		transform: translateY(-5px);
 	}
+
 	&.horizontal {
+		@apply h-44 mb-8;
+		width: 31%;
+	}
+
+	&.vertical {
 		@apply mr-4 last:mr-0 w-1/5 h-72;
 		max-width: 200px;
 	}
-	@include fade-bg-gradient(0deg);
+	
 }
 
 .img {
