@@ -15,6 +15,9 @@ export const ActorService = {
 	getById(id: string) {
 		return axios.get<IActorEdit>(getActorsUrl(`/${id}`))
 	},
+	getBySlug(slug: string) {
+		return axios.get<IActor>(getActorsUrl(`/by-slug/${slug}`))
+	},
 	update(id: string, data: IActorEdit) {
 		return axios.put<string>(getActorsUrl(`/${id}`), data)
 	},
