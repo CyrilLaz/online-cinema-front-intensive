@@ -29,7 +29,7 @@ const GenrePage: NextPage<IGenrePage> = ({ movies, genre }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const { data: genre } = await GenreService.getBySlug(String(params?.slug))
-		const { data: movies } = await MovieService.getByGenre([genre._id])
+		const { data: movies } = await MovieService.getByGenres([genre._id])
 		return { props: { movies, genre } }
 	} catch (error) {
 		return { notFound: true }
