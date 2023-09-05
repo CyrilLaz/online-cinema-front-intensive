@@ -1,0 +1,7 @@
+@import '../../../assets/styles/variables';
+
+.banner {
+	@apply relative rounded-layout shadow-lg h-80 w-full overflow-hidden flex flex-col justify-end;
+
+	@include fade-bg-gradient();
+}
